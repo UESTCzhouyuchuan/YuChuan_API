@@ -1,0 +1,34 @@
+{
+  "name": "yuchuan_api",
+  "version": "2.0.0",
+  "description": "yuchuan_api_withexpress",
+  "main": "index.js",
+  "scripts": {
+    "start": "pm2 start ecosystem.config.js --only  API-produ",
+    "dev": "pm2-runtime start ecosystem.config.js --only  API-dev"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/UESTCzhouyuchuan/YuChuan_API.git"
+  },
+  "keywords": [
+    "api",
+    "yuchuan",
+    "express"
+  ],
+  "author": "uestczhouyuchuan",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/UESTCzhouyuchuan/YuChuan_API/issues"
+  },
+  "homepage": "https://github.com/UESTCzhouyuchuan/YuChuan_API#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "mysql": "^2.18.1",
+    "pinyin": "^2.9.0"
+  },
+  "devDependencies": {
+    "body-parser": "^1.19.0",
+    "eslint": "^6.8.0"
+  }
+}

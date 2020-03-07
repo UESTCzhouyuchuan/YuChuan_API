@@ -1,0 +1,7 @@
+POST  http://localhost:3000/testPostBody
+Content-Type: application/json
+
+{
+    "type":"string",
+    "unicode":"1f499"
+}

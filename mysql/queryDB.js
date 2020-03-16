@@ -1,5 +1,5 @@
 const mysql = require('mysql');
-const $dbConfig = require('./mysql_config_gitignore.js');
+const $dbConfig = require('./mysql-config-gitignore.js');
 /**
  * {
     host: 'your host',

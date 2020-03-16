@@ -1,19 +1,20 @@
 const express = require('express');
 const router = express.Router();
-const get_unicode_info = require('../mysql/get-unicode-info.js');
-const post_get_data = require('../utils/request-data.js');
+const getUnicodeInfo = require('../mysql/get-unicode-info.js');
+const requestData = require('../utils/request-data.js');
 const keyInfo = require('../mysql/key-info.js');
+const table = 'skin_tone_emojis';
 router.all('/key', function(req, res) {
-  const reqData = post_get_data(req);
+  const reqData = requestData(req);
   const key = reqData.key;
   const columns = reqData.columns;
-  keyInfo(key, columns).then(
+  keyInfo(key, columns, table).then(
     result => res.json(result),
     err => res.status(500).send(String(err)),
   );
 });
 router.all('/', function(req, res) {
-  const query = post_get_data(req);
+  const query = requestData(req);
   let unicode = query.unicode;
   const columns = query.columns;
   let sendJson = { errMsg: '', unicode_info: [] };
@@ -28,7 +29,7 @@ router.all('/', function(req, res) {
     if (typeof unicode === 'string') {
       unicode = [unicode];
     }
-    get_unicode_info(unicode, columns).then(
+    getUnicodeInfo(unicode, columns, table).then(
       data => {
         sendJson.unicode_info = data;
         sendJson.errMsg = 'ok';

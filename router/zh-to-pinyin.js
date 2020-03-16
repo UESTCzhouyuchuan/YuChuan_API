@@ -1,6 +1,6 @@
 const pinyin = require('pinyin');
 const router = require('express').Router();
-const post_get_data = require('../utils/post_get_data');
+const post_get_data = require('../utils/request-data');
 function zh_to_py(zh, heteronym, segment, style) {
   return pinyin(zh, {
     heteronym,

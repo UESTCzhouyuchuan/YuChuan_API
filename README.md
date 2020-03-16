@@ -2,6 +2,8 @@
 
 玉川积累的 API 接口。使用`express`框架,数据使用`mysql`存储，通过连接池提高性能，有些少量的数据使用`json`文件存储。
 
+目前有三个 API,分别时获得 unicode 表情信息、汉语转拼音/汉语排序、邮箱验证码。
+
 ## emojis 接口
 
 ### 公共描述
@@ -130,3 +132,25 @@ demo: <http://api.myhoney.club/zh_to_pinyin?string=周玉川>
   sortdZh:[], // after sortd
 }
 ```
+
+## 邮箱验证码
+
+demo,`http://api.myhoney.club/code?to=你的邮箱`
+
+### api 介绍
+
+/code
+
+支持请求类型：POST/GET
+
+请求参数：
+
+- to，string 或者 array，会进行判空以及邮箱格式检查，必填
+- length，验证码的长度，选填，默认 6 位
+
+返回参数：
+
+- errMsg：提示信息，string，请求成功返回 ok
+- code：验证码，string，生成的随机数
+- emailTo：邮箱，array
+- time：发送验证码的时间戳，number，单位毫秒。可以用来判断验证码的时效性。Returns the stored time value in milliseconds since midnight, January 1, 1970 UTC.

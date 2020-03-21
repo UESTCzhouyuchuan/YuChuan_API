@@ -17,8 +17,8 @@ module.exports = {
       merge_log: true,
       env: {
         PORT: 3000,
-        NODE_ENV: 'development'
-      }
+        NODE_ENV: 'development',
+      },
     },
     {
       name: 'API-produ',
@@ -35,9 +35,9 @@ module.exports = {
       merge_log: true,
       env: {
         PORT: 8080,
-        NODE_ENV: 'production'
-      }
-    }
+        NODE_ENV: 'production',
+      },
+    },
   ],
   deploy: {
     production: {
@@ -47,7 +47,7 @@ module.exports = {
       repo: 'git@github.com:UESTCzhouyuchuan/YuChuan_API.git', //git地址
       path: '/home/ubuntu/project/YuChuan_API', //服务器文件路径
       'post-setup': 'npm install && npm run start',
-      'post-deploy': 'npm install && pm2 reload API-produ' //部署后的动作
-    }
-  }
-}
+      'post-deploy': 'npm install && pm2 reload API-produ', //部署后的动作
+    },
+  },
+};

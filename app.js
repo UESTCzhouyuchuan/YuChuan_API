@@ -3,8 +3,11 @@ const emojis = require('./router/emojis.js');
 const skinToneTmojis = require('./router/skin-tone-emojis.js');
 const zhToPinyin = require('./router/zh-to-pinyin.js');
 const sendMailCode = require('./router/sendMailCode.js');
+const qr = require('./router/qr.js');
+
 const app = new express();
 const process = require('process');
+
 app.use(express.json()); // for parsing application/json
 app.use(express.urlencoded({ extended: true })); // for parsing application/x-www-form-urlencoded
 
@@ -13,6 +16,7 @@ app.use('/pinyin', zhToPinyin);
 app.use('/emojis', emojis);
 app.use('/skin_tone_emojis', skinToneTmojis);
 app.use('/code', sendMailCode);
+app.use('/qr', qr);
 app.all('/', function(req, res) {
   res.send('this is yuchuan_api version2.0.0');
 });

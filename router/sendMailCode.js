@@ -9,13 +9,13 @@ router.all('/', (req, res) => {
   const data = requestData(req);
   let emailTo = data.to;
   if (!emailTo) {
-    res.json({
+    res.status(400).json({
       emailTo,
       errMsg: 'your emailTo is empty!输入的邮箱为空',
     });
     return;
   } else if (checkArrayOrSimgleType(emailTo, 'string', /^.+@.+\..+/) === false) {
-    res.json({
+    res.status(400).json({
       emailTo,
       errMsg: 'your emailTo is incorret format!你的邮箱格式不正确',
     });
@@ -37,7 +37,7 @@ router.all('/', (req, res) => {
       });
     })
     .catch(err => {
-      res.json({
+      res.status(500).json({
         emailTo,
         errMsg: String(err),
       });

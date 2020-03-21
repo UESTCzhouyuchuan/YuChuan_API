@@ -2,7 +2,7 @@
 
 玉川积累的 API 接口。使用`express`框架,数据使用`mysql`存储，通过连接池提高性能，有些少量的数据使用`json`文件存储。
 
-目前有三个 API,分别时获得 unicode 表情信息、汉语转拼音/汉语排序、邮箱验证码。
+目前有三个 API,分别时获得 unicode 表情信息、汉语转拼音/汉语排序、邮箱验证码、生成二维码。
 
 ## emojis 接口
 
@@ -87,6 +87,7 @@ demo: <http://api.myhoney.club/zh_to_pinyin?string=周玉川>
 ### API 介绍
 
 #### /zh_to_pinyin 或则 /pinyin
+地址: <http://api.myhoney.club/pinyin>
 
 支持请求方式： POST/GET
 
@@ -139,7 +140,7 @@ demo,`http://api.myhoney.club/code?to=你的邮箱`
 
 ### api 介绍
 
-/code
+地址: <http://api.myhoney.club/code>
 
 支持请求类型：POST/GET
 
@@ -154,3 +155,30 @@ demo,`http://api.myhoney.club/code?to=你的邮箱`
 - code：验证码，string，生成的随机数
 - emailTo：邮箱，array
 - time：发送验证码的时间戳，number，单位毫秒。可以用来判断验证码的时效性。Returns the stored time value in milliseconds since midnight, January 1, 1970 UTC.
+
+## 生成二维码
+使用的库<https://github.com/soldair/node-qrcode>
+
+demo地址 <http://api.myhoney.club/qr?value=https://myhoney.club&qrType=file>
+
+### api介绍
+地址: <http://api.myhoney.club/qr>
+
+支持请求类型：POST/GET
+
+参数：
+- value,类型string,二维码的值
+- type,type如果指定为string，则二维码解码后显示的是字符串。例如，value为某个url地址，如果不指定type为string，扫码后会跳转到链接地址。如果指定type为string，url会被当作字符串而不是地址
+- qrType，返回的二维码格式
+  - base64，默认值，返回base64图片信息
+  - string，返回的是字符模拟的二维码
+  - file，返回png格式图片
+
+返回值
+```json
+{
+  "errMsg": "", //请求成功返回ok
+  "data": "", //二维码信息
+}
+```
+**注意**：qrType指定为file，直接返回的是图片，而不是json数据

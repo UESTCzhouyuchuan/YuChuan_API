@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="NoSqlConfiguration">
+    <option name="serverConfigurations">
+      <list>
+        <ServerConfiguration>
+          <option name="connectOnIdeStartup" value="true" />
+          <option name="databaseVendor" value="DatabaseVendor{name='RedisDB'}" />
+          <option name="label" value="Redis" />
+          <option name="serverUrl" value="localhost:6379" />
+        </ServerConfiguration>
+        <ServerConfiguration>
+          <option name="authenticationSettings">
+            <AuthenticationSettings>
+              <option name="extras">
+                <map>
+                  <entry key="authDatabase" value="VS" />
+                  <entry key="ssl" value="false" />
+                </map>
+              </option>
+              <option name="password" value="123456xx" />
+              <option name="username" value="user" />
+            </AuthenticationSettings>
+          </option>
+          <option name="connectOnIdeStartup" value="true" />
+          <option name="label" value="mongo" />
+          <option name="serverUrl" value="myhoney.club:27017" />
+          <option name="userDatabase" value="VS" />
+        </ServerConfiguration>
+      </list>
+    </option>
+  </component>
+</project>

@@ -8,6 +8,7 @@ const sendMailCode = require('./router/sendMailCode.js');
 const sendTip = require('./router/sendTip.js')
 const qr = require('./router/qr.js');
 const graduate = require('./router/graduate')
+const lc_stats = require('./router/lc-stats')
 const app = new express();
 const process = require('process');
 
@@ -18,8 +19,21 @@ app.use(cookieSession({
   secret: 'yuchuan secret',
   // Cookie Options
   maxAge: 24 * 60 * 60 * 1000 // 24 hours
-}))
+}));
 
+app.all('*', function (req, res, next) {
+  // 设置请求头为允许跨域
+  res.header('Access-Control-Allow-Origin', '*');
+  // 设置服务器支持的所有头信息字段
+  res.header('Access-Control-Allow-Headers', 'Content-Type, Content-Length, Authorization, Accept, X-Requested-With , yourHeaderFeild, sessionToken');
+  // 设置服务器支持的所有跨域请求的方法
+  res.header('Access-Control-Allow-Methods', 'PUT, POST, GET, DELETE, OPTIONS');
+  if (req.method.toLowerCase() == 'options') {
+      res.send(200);  // 让options尝试请求快速结束
+  } else {
+      next();
+  }
+});
 app.use('/zh_to_pinyin', zhToPinyin);
 app.use('/pinyin', zhToPinyin);
 app.use('/emojis', emojis);
@@ -28,7 +42,7 @@ app.use('/code', sendMailCode);
 app.use('/mailTip', sendTip);
 app.use('/qr', qr);
 app.use('/graduate', graduate);
-
+app.use('/lc-stats', lc_stats);
 app.all('/', function(req, res) {
   res.send('this is yuchuan_api version2.0.0 \
   \nDocs on <a href = "https://github.com/UESTCzhouyuchuan/YuChuan_API"> https://github.com/UESTCzhouyuchuan/YuChuan_API</a>'

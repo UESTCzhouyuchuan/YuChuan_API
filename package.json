@@ -26,6 +26,7 @@
   "homepage": "https://github.com/UESTCzhouyuchuan/YuChuan_API#readme",
   "dependencies": {
     "assert": "^2.0.0",
+    "axios": "^0.26.1",
     "cookie-session": "^1.4.0",
     "express": "^4.17.1",
     "mongodb": "^3.6.5",
